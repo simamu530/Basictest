@@ -46,7 +46,8 @@ export default {
           }
           else{
               axios.post("https://still-headland-25411.herokuapp.com/api/todo")
-              .then(function(response) {console.log(response)});
+              .then(function(response) {console.log(response)})
+              .catch(({response}) => {console.log(response)});
               var new_todo = {title: this.title, important: this.important, completed: false}
               this.todos.push(new_todo);
               this.todos = this.todos.filter(todo => !todo.completed)
