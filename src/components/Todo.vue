@@ -45,12 +45,13 @@ export default {
               alert("TODOに何も書いてません")
           }
           else{
-              axios.post("https://still-headland-25411.herokuapp.com/api/todo")
-              .then(function(response) {console.log(response)})
-              .catch(({response}) => {console.log(response)});
+              axios.post("https://still-headland-25411.herokuapp.com/api/todo",
+              {title:this.title})
+              .then(function(response) {console.log(response)
               var new_todo = {title: this.title, important: this.important, completed: false}
               this.todos.push(new_todo);
-              this.todos = this.todos.filter(todo => !todo.completed)
+              this.todos = this.todos.filter(todo => !todo.completed)})
+              .catch(({response}) => {console.log(response)});
           }
       },
       deleteTodo: function(title) {
