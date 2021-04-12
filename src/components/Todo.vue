@@ -11,6 +11,7 @@
            </tr>
            <tr v-for="(todo, index) in todos" v-bind:key="index">
                <td>{{index}}</td>
+               <td>{{ todos }}</td>
                <td>{{todo.title}}</td>
                <td>{{todo.important ? 'Yes' : 'No'}}</td>
                <td><input type="checkbox" v-model="todo.completed"></td>
@@ -37,8 +38,6 @@ export default {
       }
   },
   created: function(){
-       axios.get("https://still-headland-25411.herokuapp.com/api/todo")
-       .then(function(response) => (this.todos));
        console.log(this.todos);
   },
   methods:{
@@ -56,6 +55,10 @@ export default {
               .catch(({response}) => {console.log(response)});
           }
       },
+      result(){
+          axios.get("https://still-headland-25411.herokuapp.com/api/todo")
+       .then(response => {this.todos = response.data});
+      },
       deleteTodo: function(title) {
         var index = this.todos.indexOf(title);
         this.todos.splice(index, 1);
@@ -72,6 +75,10 @@ console.log(index)
  // 入力された文字が出力される
       this.todos[0].addTodo = this.title;
     },
+  },
+  mounted() {
+      this.result()
+      console.log('mounted')
   }
 }
 </script>
