@@ -37,6 +37,8 @@ export default {
       }
   },
   created: function(){
+       axios.get("https://still-headland-25411.herokuapp.com/api/todo")
+       .then(function(response) => (this.todos));
        console.log(this.todos);
   },
   methods:{
@@ -48,7 +50,7 @@ export default {
               axios.post("https://still-headland-25411.herokuapp.com/api/todo",
               {title:this.title})
               .then(function(response) {console.log(response)
-              var new_todo = {title: this.title, important: this.important, completed: false}
+              var new_todo = {title: this.title, important: this.important, completed: false}//{のなかは好きな関数を入れれるvueに限る}
               this.todos.push(new_todo);
               this.todos = this.todos.filter(todo => !todo.completed)})
               .catch(({response}) => {console.log(response)});
