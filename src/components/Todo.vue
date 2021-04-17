@@ -59,10 +59,11 @@ export default {
        .then(response => {this.todos = response.data.data});
       },
       deleteTodo: function(task_id) {
-          axios.post("https://still-headland-25411.herokuapp.com/api/todo",{id:task_id})
-          .then((response)=>{this.todos = response.data})
-        var id = this.todos.indexOf(task_id);
-        this.todos.splice(id, 1);
+          axios.delete("https://still-headland-25411.herokuapp.com/api/todo",{id:task_id})
+          .then((response)=>{this.todos = response.data;
+          console.log(response)})
+        var index = this.todos.indexOf(task_id);
+        this.todos.splice(index, 1);
       },
       editTodo() {
       let newTitle = window.prompt("以下内容で更新します。");
