@@ -11,11 +11,10 @@
            </tr>
            <tr v-for="(todo, index) in todos" v-bind:key="index">
                <td>{{index}}</td>
-               <td>{{ todos }}</td>
                <td>{{todo.title}}</td>
                <td>{{todo.important ? 'Yes' : 'No'}}</td>
                <td><input type="checkbox" v-model="todo.completed"></td>
-               <td><button @click="deleteTodo(title)">削除</button></td>
+               <td><button @click="deleteTodo(todo.id)">削除</button></td>
            </tr>
        </table>
        <hr/>
@@ -57,10 +56,12 @@ export default {
       },
       result(){
           axios.get("https://still-headland-25411.herokuapp.com/api/todo")
-       .then(response => {this.todos = response.data});
+       .then(response => {this.todos = response.data.data});
       },
-      deleteTodo: function(title) {
-        var index = this.todos.indexOf(title);
+      deleteTodo: function(task_id) {
+          axios.post("https://still-headland-25411.herokuapp.com/api/todo",{id: task_id})
+          .then((response)=>{this.todos = response.data})
+        var index = this.todos.indexOf(task_id);
         this.todos.splice(index, 1);
       },
       editTodo() {
