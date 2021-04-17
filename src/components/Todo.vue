@@ -59,7 +59,7 @@ export default {
        .then(response => {this.todos = response.data.data});
       },
       deleteTodo: function(task_id) {
-          axios.post("https://still-headland-25411.herokuapp.com/api/todo",{id: task_id})
+          axios.post("https://still-headland-25411.herokuapp.com/api/todo",{id:task_id})
           .then((response)=>{this.todos = response.data})
         var id = this.todos.indexOf(task_id);
         this.todos.splice(id, 1);
