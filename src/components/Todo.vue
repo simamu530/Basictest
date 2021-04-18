@@ -31,7 +31,7 @@ export default {
   props: {todo_title :String},
   data: function(){ 
       return {
-          todos:[],
+          todos:[],//配列
           title: '',
           important: false
       }
@@ -47,9 +47,11 @@ export default {
           else{
               axios.post("https://still-headland-25411.herokuapp.com/api/todo",
               {title:this.title})
-              .then(function(response) {console.log(response)
-              var new_todo = {title: this.title, important: this.important, completed: false}//{のなかは好きな関数を入れれるvueに限る}
-              this.todos.push(new_todo);
+              .then((response)=> {console.log(response)
+                //   var new_todo = {title: this.title, important: this.important, completed: false}//{のなかは好きな関数を入れれるvueに限る}
+                //   this.todos.push(new_todo);
+                console.log(this.todos);
+                this.todos.push(response.data.todo);
               this.todos = this.todos.filter(todo => !todo.completed)})
               .catch(({response}) => {console.log(response)});
           }
@@ -60,11 +62,17 @@ export default {
       },
       deleteTodo: function(task_id) {
           console.log(task_id);
-          axios.delete("https://still-headland-25411.herokuapp.com/api/todo",{id:task_id})
-          .then((response)=>{this.todos = response.data;
-          console.log(response)})
-        var index = this.todos.indexOf(task_id);
-        this.todos.splice(index, 1);
+          axios({
+              method: "delete",
+              url: "https://still-headland-25411.herokuapp.com/api/todo",
+              data: {
+                id: task_id
+              },
+            })
+          .then((response)=>{
+          console.log(response)
+            var index = this.todos.indexOf(task_id);
+            this.todos.splice(index, 1);})
       },
       editTodo() {
       let newTitle = window.prompt("以下内容で更新します。");
