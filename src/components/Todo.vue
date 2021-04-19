@@ -74,6 +74,7 @@ export default {
           this.todos = response.data;
             // var index = this.todos.indexOf(task_id);
             // this.todos.splice(index, 1);})
+          })
       },
       editTodo() {
       let newTitle = window.prompt("以下内容で更新します。");
