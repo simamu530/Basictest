@@ -61,17 +61,18 @@ export default {
        .then(response => {this.todos = response.data.data});
       },
       deleteTodo: function(task_id) {
-          console.log(task_id);
-          axios({
-              method: "delete",
-              url: "https://still-headland-25411.herokuapp.com/api/del",
-              data: {
+          console.log   (task_id);
+        //   axios(
+              axios.post("https://still-headland-25411.herokuapp.com/api/todo",
+            //   method: "delete",
+            //   url: "https://still-headland-25411.herokuapp.com/api/todo",
+               {
                 id: task_id
-              },
-            })
+              }
+            )
           .then((response)=>{
           console.log(response);
-          this.todos = response.data;
+          this.todos = response.data.data;
             // var index = this.todos.indexOf(task_id);
             // this.todos.splice(index, 1);})
           })
