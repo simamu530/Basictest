@@ -64,15 +64,16 @@ export default {
           console.log(task_id);
           axios({
               method: "delete",
-              url: "https://still-headland-25411.herokuapp.com/api/todo",
+              url: "https://still-headland-25411.herokuapp.com/api/del",
               data: {
                 id: task_id
               },
             })
           .then((response)=>{
-          console.log(response)
-            var index = this.todos.indexOf(task_id);
-            this.todos.splice(index, 1);})
+          console.log(response);
+          this.todos = response.data;
+            // var index = this.todos.indexOf(task_id);
+            // this.todos.splice(index, 1);})
       },
       editTodo() {
       let newTitle = window.prompt("以下内容で更新します。");
