@@ -60,10 +60,10 @@ export default {
           axios.get("https://still-headland-25411.herokuapp.com/api/todo")
        .then(response => {this.todos = response.data.data});
       },
-      deleteTodo: function(task_id) {
-          console.log   (task_id);
+      async deleteTodo(task_id) {
+          console.log("https://still-headland-25411.herokuapp.com/api/todo/$(task_id)");
         //   axios(
-              axios.del("https://still-headland-25411.herokuapp.com/api/todo"+id,
+              axios.delete("https://still-headland-25411.herokuapp.com/api/todo/${task_id}",
             //   method: "delete",
             //   url: "https://still-headland-25411.herokuapp.com/api/todo",
                {
