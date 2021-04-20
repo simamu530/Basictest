@@ -63,7 +63,7 @@ export default {
       deleteTodo: function(task_id) {
           console.log   (task_id);
         //   axios(
-              axios.del("https://still-headland-25411.herokuapp.com/api/todo",
+              axios.del("https://still-headland-25411.herokuapp.com/api/todo"+id,
             //   method: "delete",
             //   url: "https://still-headland-25411.herokuapp.com/api/todo",
                {
