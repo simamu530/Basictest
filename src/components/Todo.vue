@@ -61,7 +61,7 @@ export default {
        .then(response => {this.todos = response.data.data});
       },
       async deleteTodo(task_id) {
-          console.log("https://still-headland-25411.herokuapp.com/api/todo/$(task_id)");
+          console.log("https://still-headland-25411.herokuapp.com/api/todo/$(task_id)"+ task_id);
         //   axios(
               axios.delete("https://still-headland-25411.herokuapp.com/api/todo/${task_id}",
             //   method: "delete",
