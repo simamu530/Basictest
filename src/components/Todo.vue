@@ -38,6 +38,7 @@ export default {
   },
   created: function(){
        console.log(this.todos);
+       this.result()
   },
   methods:{
       addTodo(){
@@ -61,9 +62,9 @@ export default {
        .then(response => {this.todos = response.data.data});
       },
       async deleteTodo(task_id) {
-          console.log("https://still-headland-25411.herokuapp.com/api/todo/$(task_id)"+ task_id);
+          console.log(`https://still-headland-25411.herokuapp.com/api/todo/$(task_id)`);
         //   axios(
-              axios.delete("https://still-headland-25411.herokuapp.com/api/todo/${task_id}",
+            await axios.delete(`https://still-headland-25411.herokuapp.com/api/todo/${task_id}`,
             //   method: "delete",
             //   url: "https://still-headland-25411.herokuapp.com/api/todo",
                {
@@ -71,10 +72,11 @@ export default {
               }
             )
           .then((response)=>{
-          console.log(response);
+          console.log(this.todos);
           this.todos = response.data.data;
             // var index = this.todos.indexOf(task_id);
             // this.todos.splice(index, 1);})
+            this.result();
           })
       },
       editTodo() {
